@@ -1,0 +1,415 @@
+@import "reset.css";
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+* {
+    box-sizing: border-box;
+
+    --rood: #DB0200;
+    --geel: #FEEA06;
+
+    --wit: #FFFFFF;
+    --zwart: #000000;
+    --lichtgrijs: #CCCCCC;
+    --donkergrijs: #A3A3A3;
+}
+
+body {
+    font-family: "Roboto", "Segoe UI", sans-serif;
+    font-size: 16px;
+    background-color: var(--lichtgrijs);
+}
+
+main { /* Gaat om alles heen, en geeft ruimte bij de zeikanten van de website */
+    padding: 10px;
+}
+
+/* Navigatie */
+nav {
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 20px;
+    background-color: var(--rood);
+}
+
+nav h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--wit);
+}
+
+nav .nav-rechts a {
+    text-decoration: none;
+    padding: 10px;
+    color: var(--wit);
+    transition: .25s ease-in-out;
+    font-weight: 300;
+    font-size: 1.1rem;
+}
+
+nav .nav-links a {
+    text-decoration: none;
+}
+
+nav .nav-container a:hover {
+    opacity: 0.5;
+}
+
+/* Home */
+
+.home-welkom {
+    width: 100%;
+}
+
+.home-welkom h1 {
+    font-size: 2rem;
+    font-weight: 400;
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.home-welkom span {
+    color: var(--rood);
+    font-weight: 500;
+}
+
+.home-productkeuze {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.home-productkeuze-product {
+    background-color: var(--wit);
+    margin: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    width: 30%;
+    cursor: pointer;
+}
+
+.home-productkeuze-product img {
+    width: 300px;
+    margin: auto;
+    display: block;
+}
+
+.home-productkeuze-product h2 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+/* Login & Registratie formulier */
+
+.login-register-formulier {
+    width: 450px;
+    margin: auto;
+    display: block;
+}
+
+.login-register-header {
+    width: 100%;
+    background-color: var(--rood);
+    padding: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.login-register-header h1 {
+    font-size: 2rem;
+    font-weight: 500;
+    color: var(--wit);
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.login-register-content {
+    width: 100%;
+    background-color: var(--wit);
+    padding: 10px;
+}
+
+.login-register-formulier-input {
+    border: none;
+    outline: none;
+    border: 2px solid var(--lichtgrijs);
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    margin: auto;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: .25s ease-in-out;
+}
+
+.login-register-formulier-input:focus {
+    border: 2px solid var(--donkergrijs);
+}
+
+.login-register-formulier-btn {
+    border: none;
+    outline: none;
+    width: 90%;
+    background-color: var(--rood);
+    padding: 10px;
+    color: var(--wit);
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    margin: auto;
+    display: block;
+    border-radius: 5px;
+    transition: .25s ease-in-out;
+    cursor: pointer;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.login-register-formulier-btn:hover {
+    border-radius: 10px;
+    background-color: #C50100;
+}
+
+.login-register-formulier a {
+    text-decoration: none;
+    color: var(--rood);
+    font-weight: 500;
+}
+
+.login-register-error {
+    font-size: 1rem;
+    text-align: center;
+    color: var(--wit);
+    margin-top: 10px;
+    text-transform: uppercase;
+}
+
+/* Mijn Account pagina */
+
+.mijn-account-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.mijn-account-container {
+    background-color: var(--wit);
+    margin: 50px 50px 0px 50px;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 20px rgb(0, 0, 0, .10);
+}
+
+.mijn-account-container h1 {
+    font-size: 1.5rem;
+    font-weight: 500;
+}
+
+.mijn-account-container p {
+    line-height: 25px;
+    word-wrap: break-word;
+}
+
+.mijn-account-container p span {
+    font-weight: 500;
+}
+
+#mijn-account-links {
+    width: 400px;
+}
+
+#mijn-account-rechts {
+    width: 700px;
+}
+
+.mijn-account-nooit-besteld {
+    text-align: center;
+    font-style: italic;
+    opacity: 0.8;
+    margin-top: 20px;
+}
+
+/* Producten pagina */
+
+.producten-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.producten-product {
+    background-color: var(--wit);
+    border-radius: 10px;
+    width: 300px;
+    padding: 15px;
+    margin: 20px;
+}
+
+.producten-product img {
+    width: 200px;
+    margin: auto;
+    display: block;
+}
+
+.producten-product h1 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    line-height: 25px;
+}
+
+.producten-product h2 {
+    font-size: 1rem;
+    line-height: 25px;
+}
+
+.producten-product h3 {
+    font-size: 1rem;
+}
+
+.producten-product a {
+    text-decoration: none;
+}
+
+.producten-product-knop {
+    outline: none;
+    border: none;
+    background-color: var(--rood);
+    padding: 10px;
+    cursor: pointer;
+    color: var(--wit);
+    font-size: 1.2rem;
+    margin-top: 10px;
+    border-radius: 10px;
+    transition: .25s ease-in-out;
+}
+
+.producten-product .producten-product-knop {
+    outline: none;
+    border: none;
+    background-color: var(--rood);
+    padding: 10px;
+    cursor: pointer;
+    color: var(--wit);
+    font-size: 1.2rem;
+    margin-top: 10px;
+    border-radius: 10px;
+    transition: .25s ease-in-out;
+}
+
+.producten-product .producten-product-knop:hover {
+    opacity: .7;
+}
+
+/* 404 error pagina */
+
+.error-404 {
+    width: 100%;
+    height: 50vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.error-404 h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.error-404 p {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+/* Admin omgeving */
+
+.nieuwproduct-form {
+    width: 900px;
+    margin: auto;
+    display: block;
+    background-color: var(--wit);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.nieuwproduct-form-input {
+    border: none;
+    outline: none;
+    border: 2px solid var(--zwart);
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    margin: auto;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    transition: .25s ease-in-out;
+
+}
+
+.nieuwproduct-form textarea {
+    resize: none;
+    outline: none;
+    border: none;
+    border: 2px solid var(--zwart);
+    border-radius: 5px;
+    padding: 5px;
+    width: 100%;
+    margin: auto;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.nieuwproduct-form-uploader {
+    width: 100%;
+    margin: auto;
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+
+/* Responsive queries */
+
+@media screen and (max-width: 1325px) {
+    #mijn-account-links {
+        width: 250px;
+    }
+    #mijn-account-rechts {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 1100px) {
+    .home-productkeuze-product {
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 1075px) {
+    #mijn-account-links {
+        width: 100%;
+    }
+    #mijn-account-rechts {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 730px) {
+    .home-productkeuze-product {
+        width: 90%;
+    }
+}

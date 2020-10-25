@@ -23,7 +23,7 @@ if(empty($_SESSION["email"])) {
         <a href="#">Aanbiedingen</a>
         <a href="mijnaccount.php">Mijn Account</a>
         <a href="uitloggen.php">Uitloggen</a>
-        <a href="#"><i class="fas fa-shopping-cart"></i></a>
+        <a href="winkelwagen.php"><i class="fas fa-shopping-cart"></i></a>
     </div>
 </nav>
 <br><br><br><br><br><br>

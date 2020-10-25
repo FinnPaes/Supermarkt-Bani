@@ -311,6 +311,74 @@ nav .nav-container a:hover {
     opacity: .7;
 }
 
+/* Winkelwagen */
+
+.winkelwagen-titel {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 30px;
+}
+
+.winkelwagen-product-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--wit);
+    padding: 15px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.winkelwagen-product-container img {
+    width: 100px;
+}
+
+.winkelwagen-product-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+}
+
+.winkelwagen-product-container a {
+    text-decoration: none;
+}
+
+.winkelwagen-aantalknop {
+    outline: none;
+    border: none;
+    background-color: var(--rood);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--wit);
+    width: 40px;
+    padding: 5px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.winkelwagen-aantal {
+    display: inline;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin: 5px;
+}
+
+.winkelwagen-verwijderen {
+    border: none;
+    outline: none;
+    background-color: var(--rood);
+    font-size: 1.3rem;
+    font-weight: 500;
+    padding: 5px;
+    border-radius: 10px;
+    color: var(--wit);
+    margin-top: 5px;
+    cursor: pointer;
+}
+
 /* 404 error pagina */
 
 .error-404 {

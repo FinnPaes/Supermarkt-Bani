@@ -406,6 +406,65 @@ nav .nav-container a:hover {
     cursor: pointer;
 }
 
+/* Product pagina */
+
+.productpagina-product {
+    width: 50%;
+    background-color: var(--wit);
+    margin: auto;
+    display: block;
+    padding: 15px;
+    border-radius: 10px;
+}
+
+.productpagina-product img {
+    width: 250px;
+    margin: auto;
+    display: block;
+}
+
+.productpagina-product h1 {
+    font-size: 1.3rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+}
+
+.productpagina-product h2 {
+    font-size: 1.1rem;
+    line-height: 25px;
+    margin-bottom: 10px;
+}
+
+.productpagina-product h2 span {
+    font-weight: 500;
+}
+
+.productpagina-product hr {
+    border: none;
+    border: 1px solid var(--zwart);
+    margin-bottom: 10px;
+}
+
+.productpagina-product p {
+    font-size: 1.1rem;
+    font-weight: 300;
+    word-wrap: break-word;
+}
+
+.productpagina-product button {
+    border: none;
+    outline: none;
+    background-color: var(--rood);
+    padding: 10px;
+    cursor: pointer;
+    color: var(--wit);
+    font-size: 1.2rem;
+    margin-top: 30px;
+    border-radius: 10px;
+    width: 100%;
+    transition: .25s ease-in-out;
+}
+
 /* 404 error pagina */
 
 .error-404 {

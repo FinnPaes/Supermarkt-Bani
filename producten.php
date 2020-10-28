@@ -1,6 +1,6 @@
 <?php
 
-$categorie = $_GET['categorie'];
+$categorie = $_GET["categorie"];
 $correctCategorieen = array("groenten_fruit", "vis_vlees", "kaas_vleeswaren", "bakkerij", "dranken", "alcohol");
 $paginaTitel = "Laden...";
 if (!in_array($categorie, $correctCategorieen)) {
@@ -51,7 +51,7 @@ echo '
     <h1>'. $product->naam .'</h1>
     <h2>Voorraad: '. $product->voorraad .'</h2>
     <h3>Prijs: '. $product->prijs .'&#8364;</h3>
-    <a href="#">
+    <a href="product.php?id='. $product->id .'">
         <button class="producten-product-knop" style="width: 80%;">Bekijken</button>
     </a>
     <a href="#">

@@ -11,24 +11,67 @@
 require_once("includes/nav.php");
 ?>
 <main>
+<?php
+$gebruikerID = $_SESSION["id"];
 
-<h1 class="winkelwagen-titel">Winkelwagen:</h1>
+if(empty($_SESSION["email"])) {
+    header("Location: .");
+} else {
+    // Pak alles in winkelwagen van gebruiker
+    $stmt = $connect->prepare("SELECT * FROM winkelwagen WHERE gebruikerID = :gebruikerID");
+    $stmt->execute(array(
+        ":gebruikerID" => $gebruikerID
+    ));
+    $winkelwagenItems = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-<div class="winkelwagen-product-wrapper">
-    <div class="winkelwagen-product-container">
-        <img src="assets/images/producten/5f8eb69cb89886.36909379.jpg" />
-        <h1>Banaan</h1>
-        <p>2.00&euro; /stuk</p>
-    </div>
-    <div class="winkelwagen-product-container">
-        <form action="" method="POST">
-        <input type="submit" class="winkelwagen-aantalknop" value="-" name="min">
-        <p class="winkelwagen-aantal">12</p>
-        <input type="submit" class="winkelwagen-aantalknop" value="+" name="plus"><br>
-        <input type="submit" class="winkelwagen-verwijderen" value="Verwijderen" name="verwijderen">
-    </div>
-</div>
+    $winkelwagenItemsAantal = $stmt->rowCount();
 
+    if ($winkelwagenItemsAantal < 1) {
+        echo '<h1 class="winkelwagen-titel">Het lijkt erop dat u winkelwagen leeg is...</h1>';
+    } else {
+        echo '<h1 class="winkelwagen-titel">Winkelwagen:</h1>';
+        $subTotaal = 0;
+
+        foreach ($winkelwagenItems as $winkelwagenItem) {
+            $productID = $winkelwagenItem->productID;
+            $aantal = $winkelwagenItem->aantal;
+        
+            $stmt = $connect->prepare("SELECT * FROM producten WHERE id = :productID");
+            $stmt->execute(array(
+                ":productID" => $productID
+            ));
+            $product = $stmt->fetch(PDO::FETCH_OBJ);
+        
+            $productFoto = $product->foto;
+            $productNaam = $product->naam;
+            $productPrijs = $product->prijs;
+            $productVoorraad = $product->voorraad;
+            $subTotaal = $subTotaal + $productPrijs * $aantal;
+            
+            echo '<div class="winkelwagen-product-wrapper">
+            <div class="winkelwagen-product-container">
+                <img src="'. $productFoto .'" />
+                <h1>'. $productNaam .'</h1>
+                <p>'. $productPrijs .'&euro; /stuk</p>
+            </div>
+            <div class="winkelwagen-product-container">
+                <form action="" method="POST">
+                <input type="submit" class="winkelwagen-aantalknop" value="-" name="min">
+                <p class="winkelwagen-aantal">'. $aantal .'</p>
+                <input type="submit" class="winkelwagen-aantalknop" value="+" name="plus"><br>
+                <input type="submit" class="winkelwagen-verwijderen" value="Verwijderen" name="verwijderen">
+            </div>
+        </div>
+        ';
+        }
+        echo '<div class="winkelwagen-afrekenen">
+        <p>Totaal: '. $subTotaal .'&euro;</p>
+        <button>Afrekenen</button>
+    </div>';
+    }
+}
+
+?>
 
     
 </main>

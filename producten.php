@@ -52,11 +52,18 @@ $producten = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 if(empty($_SESSION["email"])) {
     foreach($producten as $product) {
+        $voorraadKleur = "#000000";
+        if ($product->voorraad <= 5) {
+            $voorraadKleur = "#ff7900";
+        }
+        if ($product->voorraad <= 0) {
+            $voorraadKleur = "#db0200!important";
+        }
 echo '
 <div class="producten-product">
     <img src="'. $product->foto .'" />
     <h1>'. $product->naam .'</h1>
-    <h2>Voorraad: '. $product->voorraad .'</h2>
+    <h2>Voorraad: <span style="color: '. $voorraadKleur .'">'. $product->voorraad .'</span></h2>
     <h3>Prijs: '. $product->prijs .'&#8364;</h3>
     <a href="product.php?id='. $product->id .'">
         <button class="producten-product-knop" style="width: 100%;">Bekijken</button>
@@ -66,11 +73,32 @@ echo '
 
 } else {
     foreach($producten as $product) {
-        echo '
+        $voorraadKleur = "#000000";
+        if ($product->voorraad <= 5) {
+            $voorraadKleur = "#ff7900";
+        }
+        if ($product->voorraad <= 0) {
+            $voorraadKleur = "#db0200!important";
+        }
+
+        if ($product->voorraad < 1) {
+            echo '
+            <div class="producten-product">
+                <img src="'. $product->foto .'" />
+                <h1>'. $product->naam .'</h1>
+                <h2>Voorraad: <span style="color: '. $voorraadKleur .'">'. $product->voorraad .'</span></h2>
+                <h3>Prijs: '. $product->prijs .'&#8364;</h3>
+                <a href="product.php?id='. $product->id .'">
+                    <button class="producten-product-knop" style="width: 80%;">Bekijken</button>
+                </a>
+                <button class="producten-product-knop" style="width: 18%;" onclick="alert(&#39;Dit product is helaas niet meer in voorraad.&#39;);"><i class="fas fa-shopping-cart"></i></button>
+            </div>';   
+        } else {
+            echo '
         <div class="producten-product">
             <img src="'. $product->foto .'" />
             <h1>'. $product->naam .'</h1>
-            <h2>Voorraad: '. $product->voorraad .'</h2>
+            <h2>Voorraad: <span style="color: '. $voorraadKleur .'">'. $product->voorraad .'</span></h2>
             <h3>Prijs: '. $product->prijs .'&#8364;</h3>
             <a href="product.php?id='. $product->id .'">
                 <button class="producten-product-knop" style="width: 80%;">Bekijken</button>
@@ -79,6 +107,7 @@ echo '
                 <button class="producten-product-knop" style="width: 18%;"><i class="fas fa-shopping-cart"></i></button>
             </a>
         </div>';
+        }
         }
         
 }

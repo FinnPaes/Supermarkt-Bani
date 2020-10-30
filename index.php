@@ -43,6 +43,7 @@ require_once("includes/nav.php");
 </div>
 
 <script src="assets/scripts/index.js"></script>
+
 <script src="https://kit.fontawesome.com/0724c1067d.js" crossorigin="anonymous"></script>
 </main>
 </body>

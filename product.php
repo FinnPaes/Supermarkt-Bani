@@ -36,7 +36,7 @@ require_once("includes/nav.php");
     <h1><?php echo $productNaam; ?></h1>
     <h2><span>Prijs:</span> <?php echo $productPrijs; ?>&euro;<br><span>Voorraad:</span> <?php echo $productVoorraad; ?></h2>
     <hr>
-    <p><?php echo $productBeschrijving; ?></p>
+    <p><?php echo nl2br($productBeschrijving); ?></p>
     <button>Bestellen</button>
 </div>
     

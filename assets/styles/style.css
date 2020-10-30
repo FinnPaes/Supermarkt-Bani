@@ -453,6 +453,7 @@ nav .nav-container a:hover {
 .productpagina-product p {
     font-size: 1.1rem;
     font-weight: 300;
+    line-height: 26px;
     word-wrap: break-word;
 }
 

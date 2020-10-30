@@ -4,7 +4,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pagina niet gevonden &mdash; Bani Supermarkt</title>
     <link rel="stylesheet" type="text/css" href="assets/styles/style.css" />
-    <script src="https://kit.fontawesome.com/0724c1067d.js" crossorigin="anonymous"></script>
 </head>
 <body>
 <?php
@@ -20,6 +19,7 @@ header("Refresh: 5; url=index.php");
     <h2>U wordt naar de homepagina gebracht over 5 seconden...</h2>
 </div>
 
+<script src="https://kit.fontawesome.com/0724c1067d.js" crossorigin="anonymous"></script>
 </main>
 </body>
 </html>

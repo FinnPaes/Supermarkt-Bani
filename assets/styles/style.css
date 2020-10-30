@@ -311,6 +311,11 @@ nav .nav-container a:hover {
     opacity: .7;
 }
 
+.u-moet-inloggen {
+    text-align: center;
+    font-size: 1.5rem;
+}
+
 /* Winkelwagen */
 
 .winkelwagen-titel {

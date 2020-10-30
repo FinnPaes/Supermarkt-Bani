@@ -21,6 +21,8 @@ if ($categorie == "groenten_fruit") {
     $paginaTitel = "Alcoholische Dranken";
 }
 
+
+
 ?>
 <html lang="en">
 <head>
@@ -35,6 +37,11 @@ if ($categorie == "groenten_fruit") {
 require_once("includes/nav.php");
 ?>
 <main>
+<?php
+if(empty($_SESSION["email"])) {
+    echo '<h1 class="u-moet-inloggen">Om te bestellen moet u een account aanmaken.</h1>';
+}
+?>
 <div class="producten-wrapper">
 <?php
 
@@ -44,7 +51,8 @@ $stmt->execute(array(
 ));
 $producten = $stmt->fetchAll(PDO::FETCH_OBJ);
 
-foreach($producten as $product) {
+if(empty($_SESSION["email"])) {
+    foreach($producten as $product) {
 echo '
 <div class="producten-product">
     <img src="'. $product->foto .'" />
@@ -52,13 +60,30 @@ echo '
     <h2>Voorraad: '. $product->voorraad .'</h2>
     <h3>Prijs: '. $product->prijs .'&#8364;</h3>
     <a href="product.php?id='. $product->id .'">
-        <button class="producten-product-knop" style="width: 80%;">Bekijken</button>
-    </a>
-    <a href="#">
-        <button class="producten-product-knop" style="width: 18%;"><i class="fas fa-shopping-cart"></i></button>
+        <button class="producten-product-knop" style="width: 100%;">Bekijken</button>
     </a>
 </div>';
 }
+
+} else {
+    foreach($producten as $product) {
+        echo '
+        <div class="producten-product">
+            <img src="'. $product->foto .'" />
+            <h1>'. $product->naam .'</h1>
+            <h2>Voorraad: '. $product->voorraad .'</h2>
+            <h3>Prijs: '. $product->prijs .'&#8364;</h3>
+            <a href="product.php?id='. $product->id .'">
+                <button class="producten-product-knop" style="width: 80%;">Bekijken</button>
+            </a>
+            <a href="winkelwagenupdate.php?id='. $product->id .'">
+                <button class="producten-product-knop" style="width: 18%;"><i class="fas fa-shopping-cart"></i></button>
+            </a>
+        </div>';
+        }
+        
+}
+
 
 ?>
 

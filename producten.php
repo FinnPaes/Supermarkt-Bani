@@ -1,12 +1,13 @@
 <?php
 
-$categorie = $_GET["categorie"];
-$correctCategorieen = array("groenten_fruit", "vis_vlees", "kaas_vleeswaren", "bakkerij", "dranken", "alcohol");
+$categorie = $_GET["categorie"]; // Pak categorie uit de GET url
+$correctCategorieen = array("groenten_fruit", "vis_vlees", "kaas_vleeswaren", "bakkerij", "dranken", "alcohol"); // Alle categorien die bestaan
 $paginaTitel = "Laden...";
-if (!in_array($categorie, $correctCategorieen)) {
+if (!in_array($categorie, $correctCategorieen)) { // Als de categorie uit de GET url niet in de array staat, stuur naar home pagina.
     header("Location: index.php");
 }
 
+// Verander pagina titel naar de titel van de GET url
 if ($categorie == "groenten_fruit") {
     $paginaTitel = "Groenten & Fruit";
 } else if ($categorie == "vis_vlees") {
@@ -33,30 +34,30 @@ if ($categorie == "groenten_fruit") {
 </head>
 <body>
 <?php
-require_once("includes/nav.php");
+require_once("includes/nav.php"); // Importeer nav
 ?>
 <main>
 <?php
-if(empty($_SESSION["email"])) {
+if(empty($_SESSION["email"])) { // Als je niet ingelogd bent krijg je een tekst bovenaan dat je een account moet maken om te bestellen.
     echo '<h1 class="u-moet-inloggen">Om te bestellen moet u een account aanmaken.</h1>';
 }
 ?>
 <div class="producten-wrapper">
 <?php
 
-$stmt = $connect->prepare("SELECT * FROM producten WHERE categorie = :categorie");
-$stmt->execute(array(
+$stmt = $connect->prepare("SELECT * FROM producten WHERE categorie = :categorie"); // SQL Query
+$stmt->execute(array( // Bind :categorie en voer query uit.
     ":categorie" => $categorie
 ));
-$producten = $stmt->fetchAll(PDO::FETCH_OBJ);
+$producten = $stmt->fetchAll(PDO::FETCH_OBJ); // Haal de data op uit db
 
-if(empty($_SESSION["email"])) {
+if(empty($_SESSION["email"])) { // Email sessie leeg? Dan mag je niet bestellen, dus andere knoppen/opties.
     foreach($producten as $product) {
-        $voorraadKleur = "#000000";
-        if ($product->voorraad <= 5) {
+        $voorraadKleur = "#000000"; // Standaard voorraadkleur (De voorraadkleur is de kleur van het getal hoeveel er in voorraad is)
+        if ($product->voorraad <= 5) { // Als er 5 of minder in voorraad zijn, maak tekst oranje.
             $voorraadKleur = "#ff7900";
         }
-        if ($product->voorraad <= 0) {
+        if ($product->voorraad <= 0) { // Als er minder dan 0 zijn, dus geen vooraad, maak het rood. !important voor overwrite CSS.
             $voorraadKleur = "#db0200!important";
         }
 echo '
@@ -71,7 +72,7 @@ echo '
 </div>';
 }
 
-} else {
+} else { // Alles zelfde als hierboven, maar dan wel bestel knop, beetje dubbelop maar ja... je moet wat he
     foreach($producten as $product) {
         $voorraadKleur = "#000000";
         if ($product->voorraad <= 5) {

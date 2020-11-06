@@ -7,6 +7,7 @@
 </head>
 <body>
 <?php
+// Importeert de navigatie balk
 require_once("includes/nav.php");
 ?>
 <main>

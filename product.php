@@ -37,7 +37,12 @@ require_once("includes/nav.php");
     <h2><span>Prijs:</span> <?php echo $productPrijs; ?>&euro;<br><span>Voorraad:</span> <?php echo $productVoorraad; ?></h2>
     <hr>
     <p><?php echo nl2br($productBeschrijving); ?></p>
-    <button>Bestellen</button>
+    <?php
+    if (empty($_SESSION["id"])) {
+    } else {
+        echo '<a href="winkelwagenupdate.php?id='. $product->id .'" class="nieuw-product-toevoegen-index">Bestellen</a>';
+    }
+    ?>
 </div>
     
 <script src="https://kit.fontawesome.com/0724c1067d.js" crossorigin="anonymous"></script>

@@ -1,3 +1,10 @@
+<!--
+
+Deze pagina is niks, dit was mijn standaard format als ik een nieuwe pagina maakte
+Stylesheet erin, fontawesome etc.
+
+-->
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">

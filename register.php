@@ -16,9 +16,10 @@ if(empty($_SESSION["email"])) {
 
 // Registratie process
 
-if(isset($_POST["register"])) {
+if(isset($_POST["register"])) { // Register knop ingedrukt in form
     $errorMessage = "";
 
+    // Sla alle informatie van formulieren op in variables
     $naam = $_POST["naam"];
     $email = $_POST["email"];
     $rawWachtwoord = $_POST["wachtwoord"];
@@ -28,6 +29,7 @@ if(isset($_POST["register"])) {
     $straatnaam = $_POST["straatnaam"];
     $woonplaats = $_POST["woonplaats"];
 
+    // Kijk of de ingevoerde dingen niet leeg zijn
     if ($naam == "") {
         $errorMessage = "Geen naam ingevuld";
     }
@@ -50,14 +52,14 @@ if(isset($_POST["register"])) {
         $errorMessage = "Geen woonplaats ingevuld";
     }
 
-    if (strlen($rawWachtwoord) < 6) {
+    if (strlen($rawWachtwoord) < 6) { // Wachtwoord minder dan 6 karakters? Niet door gaan, dat is onveilig.
         $errorMessage = "Wachtwoord moet minimaal 6 tekens bevatten";
     }
 
-    if ($errorMessage == "") {
+    if ($errorMessage == "") { // Als errormessage leeg is, ga door.
         try {
-            $stmt = $connect->prepare("INSERT INTO gebruikers (naam, email, wachtwoord, postcode, huisnummer, straatnaam, woonplaats) VALUES (:naam, :email, :wachtwoord, :postcode, :huisnummer, :straatnaam, :woonplaats)");
-            $stmt->execute(array(
+            $stmt = $connect->prepare("INSERT INTO gebruikers (naam, email, wachtwoord, postcode, huisnummer, straatnaam, woonplaats) VALUES (:naam, :email, :wachtwoord, :postcode, :huisnummer, :straatnaam, :woonplaats)"); // SQL Query
+            $stmt->execute(array( // Bind alle :parameters met variables van user input
                 ":naam" => $naam,
                 ":email" => $email,
                 ":wachtwoord" => $wachtwoord,
@@ -66,9 +68,9 @@ if(isset($_POST["register"])) {
                 ":straatnaam" => $straatnaam,
                 ":woonplaats" => $woonplaats
             ));
-            header("Location: login.php");
+            header("Location: login.php"); // Stuur door naar login pagina, registratie is gelukt.
             exit;
-        } catch(PDOException $e) {
+        } catch(PDOException $e) { // Catch moet altijd bij een try claussule
             echo $e->getMessage();
         }
     }

@@ -16,7 +16,7 @@ if(empty($_SESSION["token"])) {
 ?>
 <main>
 
-
+<a href="nieuwproduct.php" class="nieuw-product-toevoegen-index">Nieuw Product Toevoegen</a>
     
 </main>
 </body>

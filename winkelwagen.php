@@ -22,7 +22,6 @@ if(empty($_SESSION["email"])) {
         ":gebruikerID" => $gebruikerID
     ));
     $winkelwagenItems = $stmt->fetchAll(PDO::FETCH_OBJ);
-
     $winkelwagenItemsAantal = $stmt->rowCount();
 
     if ($winkelwagenItemsAantal < 1) {
@@ -65,11 +64,45 @@ if(empty($_SESSION["email"])) {
         }
         echo '<div class="winkelwagen-afrekenen">
         <p>Totaal: '. $subTotaal .'&euro;</p>
-        <button>Afrekenen</button>
+        <form type="POST" action="">
+            <input type="submit" value="Afrekenen" name="afrekenen">
+        </form>
     </div>';
     }
 }
 
+if(isset($_POST["afrekenen"])) {
+    $stmt = $connect->prepare("INSERT INTO bestellingen (gebruikerID, subtotaal, datum) VALUES (:gebruikerID, :subtotaal, :datum)");
+    $stmt->execute(array(
+        ":gebruikerID" => $gebruikerID,
+        ":subtotaal" => $subTotaal,
+        ":datum" => date("Y-m-d")
+    ));
+
+    $stmt = $connect->prepare("SELECT bestellingaantal FROM gebruikers WHERE id = :gebruikerID");
+    $stmt->execute(array(
+        ":gebruikerID" => $gebruikerID
+    ));
+    $bestellingaantalDB = $stmt->fetch(PDO::FETCH_OBJ);
+    $bestellingaantal = $bestellingaantalDB->bestellingaantal;
+    $bestellingaantal++;
+    echo $bestellingaantal;
+
+    $stmt = $connect->prepare("UPDATE gebruikers SET bestellingaantal = :bestellingaantal WHERE id = :gebruikerID");
+    $stmt->execute(array(
+        ":bestellingaantal" => $bestellingaantal,
+        ":gebruikerID" => $gebruikerID
+    ));
+
+    $stmt = $connect->prepare("DELETE FROM winkelwagen WHERE gebruikerID = :gebruikerID");
+    $stmt->execute(array(
+        ":gebruikerID" => $gebruikerID
+    ));
+    
+    header("Location: mijnaccount.php");
+    exit;
+    
+}
 ?>
 
 

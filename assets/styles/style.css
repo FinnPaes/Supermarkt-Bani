@@ -541,6 +541,19 @@ nav .nav-container a:hover {
     margin-bottom: 10px;
 }
 
+.nieuw-product-toevoegen-index {
+    text-decoration: none;
+    background-color: var(--rood);
+    font-size: 1.5rem;
+    color: var(--wit);
+    width: 100%;
+    padding: 10px;
+    margin: auto;
+    display: block;
+    text-align: center;
+    border-radius: 10px;
+}
+
 
 /* Responsive queries */
 

@@ -25,6 +25,11 @@ $gebruiker_straatnaam = $gebruikersData->straatnaam;
 $gebruiker_postcode = $gebruikersData->postcode;
 $gebruiker_huisnummer = $gebruikersData->huisnummer;
 
+$stmt = $connect->prepare("SELECT * FROM bestellingen WHERE gebruikerID = :gebruikerID");
+$stmt->execute(array(
+    ":gebruikerID" => $_SESSION["id"]
+));
+$bestellingen = $stmt->fetchAll(PDO::FETCH_OBJ);
 
 
 ?>
@@ -47,6 +52,10 @@ $gebruiker_huisnummer = $gebruikersData->huisnummer;
 <?php
 if ($gebruiker_bestellingaantal < 1) {
     echo "<p class='mijn-account-nooit-besteld'>Geen bestellingen gevonden...</p>";
+} else {
+    foreach($bestellingen as $bestelling) {
+        echo '<p class="mijn-bestellingen-bestelling>Bedrag: '. $bestelling->subtotaal .'&euro; &mdash; '. $bestelling->datum .'</p>';
+    }
 }
 ?>
     </div>
